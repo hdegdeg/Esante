@@ -14,10 +14,12 @@ import {
   MatInputModule,
   MatToolbarModule
 } from '@angular/material';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserAnimationsModule,

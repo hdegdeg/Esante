@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {Web3Service} from '../../util/web3.service';
+import { Component, OnInit } from '@angular/core';
+import { Web3Service } from '../../util/web3.service';
 import { MatSnackBar } from '@angular/material';
 
 declare let require: any;
@@ -54,7 +54,7 @@ export class MetaSenderComponent implements OnInit {
   }
 
   setStatus(status) {
-    this.matSnackBar.open(status, null, {duration: 3000});
+    this.matSnackBar.open(status, null, { duration: 3000 });
   }
 
   async sendCoin() {
@@ -71,7 +71,7 @@ export class MetaSenderComponent implements OnInit {
     this.setStatus('Initiating transaction... (please wait)');
     try {
       const deployedMetaCoin = await this.MetaCoin.deployed();
-      const transaction = await deployedMetaCoin.sendCoin.sendTransaction(receiver, amount, {from: this.model.account});
+      const transaction = await deployedMetaCoin.sendCoin.sendTransaction(receiver, amount, { from: this.model.account });
 
       if (!transaction) {
         this.setStatus('Transaction failed!');
