@@ -1,0 +1,47 @@
+.Mystyle{
+        
+    
+    border-radius: 4px;
+    height: 215px;
+   
+    padding-top: 140px;
+    padding-left: 70px;
+    border-spacing: 10px; 
+}
+
+input.ng-invalid{
+    border-left:5px solid red
+}
+
+input.ng-valid{
+    border-left:5px solid blue
+}
+
+
+.stylefooter{
+   
+    position: relative;
+    top: 211px;
+    bottom: 0px;
+   
+   
+    background-color: #009bff;
+  
+}
+.navStyle{
+    background-color: #009bff;
+}
+.textcolor{
+    color: #fb3f3f;
+    
+}
+.paragraphe{
+    background-color: #f0efef;
+
+    border: 1px solid black;
+
+}
+
+.textfooter{
+    color:white;
+}
