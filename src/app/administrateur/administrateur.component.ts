@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as Web3 from 'web3';
 
 @Component({
   selector: 'app-administrateur',
