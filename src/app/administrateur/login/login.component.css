@@ -17,7 +17,7 @@ input.ng-valid{
 }
 .stylefooter{
    
-    position: relative;
+    position: inherit;
     top: 155px;
     bottom: 0px;
    

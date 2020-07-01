@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import {MetaModule} from './meta/meta.module';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
@@ -14,7 +13,6 @@ import {
   MatInputModule,
   MatToolbarModule
 } from '@angular/material';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { AdministrateurComponent } from './administrateur/administrateur.component';
@@ -27,7 +25,6 @@ import { MaladelogComponent } from './malades/maladelog/maladelog.component';
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
     HomeComponent,
     AdministrateurComponent,
     MedecinsComponent,
@@ -51,7 +48,6 @@ import { MaladelogComponent } from './malades/maladelog/maladelog.component';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    MetaModule,
     AppRoutingModule
   ],
   providers: [],

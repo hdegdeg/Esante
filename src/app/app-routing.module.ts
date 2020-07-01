@@ -14,7 +14,7 @@ const routes: Routes = [
   {path:'loginMedecin', component:MedecinlogComponent},
   {path:'loginMalade', component:MaladelogComponent},
 
-  {path:'pageAdmin', component:AdministrateurComponent},
+  {path:'pageAdmin/:id', component:AdministrateurComponent},
   {path:'pageMalade', component:MaladesComponent},
   {path:'pageMedecin', component:MedecinsComponent},
   {path:'', component:HomeComponent}

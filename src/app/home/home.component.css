@@ -20,13 +20,12 @@ input.ng-valid{
 
 .stylefooter{
    
-    position: relative;
-    top: 211px;
-    bottom: 0px;
-   
-   
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     background-color: #009bff;
-  
+    text-align: center;
 }
 .navStyle{
     background-color: #009bff;

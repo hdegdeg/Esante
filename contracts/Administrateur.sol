@@ -69,4 +69,37 @@ contract Administrateur {
         //récupéré les nom de roles contenu dans le tableau listRole
         password = newpassword;
     }
+
+
+    function getIdAdmin( ) public view returns (string memory)
+    {
+        return idAdmin;
+    }
+
+    function getNomAdmin() public view returns (string memory)
+    {
+        return nomAdmin;
+    }
+
+    function getPrenomAdmin( ) public view returns (string memory)
+    {
+        return prenomAdmin;
+    }
+
+
+    function getTelephoneAdmin( ) public view returns (uint256)
+    {
+        return numeroTel;
+    }
+
+
+    function getMailAdmin() public view returns (string memory)
+    {
+        return mailAdmin;
+    }
+
+     function getPasswordMalade() public view returns (string memory)
+    {
+        return password;
+    }
 }
