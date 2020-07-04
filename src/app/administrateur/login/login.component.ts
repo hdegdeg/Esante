@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as Web3 from 'web3';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -11,18 +12,18 @@ export class LoginComponent implements OnInit {
   public idAdmin = "***";
   public nomAdmin = "***";
   public prenomAdmin = "***";
-  public numeroTel ;
-  public  mailAdmin = "***";
-  public  password = "***";
+  public numeroTel;
+  public mailAdmin = "***";
+  public password = "***";
   private web3: Web3;
 
 
   private smartContract: Web3.eth.Contract;
   private accounts: Web3.eth.Accounts[];
-  readonly Addresscontract= '0x392998cae55b43995312b97798c2A51b29882Dd5';
+  readonly Addresscontract = '0xd49F6F7ff572A869601E3bb38e4f42e9140d1a4a';
 
 
-  readonly AbiContract= [
+  readonly AbiContract = [
     {
       "constant": true,
       "inputs": [
@@ -252,67 +253,76 @@ export class LoginComponent implements OnInit {
     }
   ];
 
- constructor(private router: Router) { 
-   this.web3 = new Web3(Web3.givenProvider);
-   this.web3.currentProvider.publicConfigStore.on('update', async () => {
-     this.accounts = await this.web3.eth.getAccounts();
-   } );
+  constructor(private router: Router, private readonly http: HttpClient) {
+    this.web3 = new Web3(Web3.givenProvider);
+    this.web3.currentProvider.publicConfigStore.on('update', async () => {
+      this.accounts = await this.web3.eth.getAccounts();
+    });
 
- }
-
- ngOnInit() {
-
-   this.smartContract= new this.web3.eth.Contract(
-     this.AbiContract,
-     this.Addresscontract,
-     {from:'0x14eA962FE99Bb404255ed439Ce17F67Db72f7515'}
-     );
-     console.log("debut Appel");
-
-    // this.initAdmin();
-
-     console.log("Fin Appel");
-
- }
-
- async initAdmin()
- {
-   console.log("debut init Admin");
-   await this.smartContract.methods.initAdministrateur("1234","DEGDEG","Hicham",558805327,"hdegdeg24@gmail.com","degdeg123").send();
-
-   this.idAdmin = await this.smartContract.methods.getIdAdmin().call();
-   this.nomAdmin  = await this.smartContract.methods.getNomAdmin().call();
-   this.prenomAdmin = await this.smartContract.methods.getPrenomAdmin().call();
-   this.numeroTel = await this.smartContract.methods.getTelephoneAdmin().call();
-   this.mailAdmin = await this.smartContract.methods.getMailAdmin().call();
-   this.password = await this.smartContract.methods.getPasswordMalade().call();
-
-   console.log("Fin init Admin");
-
- }
-
- 
- async testLogin(data)
- {
-  this.idAdmin = await this.smartContract.methods.getIdAdmin().call();
-   this.nomAdmin  = await this.smartContract.methods.getNomAdmin().call();
-   this.prenomAdmin = await this.smartContract.methods.getPrenomAdmin().call();
-   this.numeroTel = await this.smartContract.methods.getTelephoneAdmin().call();
-   this.mailAdmin = await this.smartContract.methods.getMailAdmin().call();
-   this.password = await this.smartContract.methods.getPasswordMalade().call();
-
-
-  let InfosAdmin: string[]= [this.idAdmin, this.nomAdmin ,this.prenomAdmin ,this.numeroTel ,this.mailAdmin ,this.password ,];
-  
-   if(data.email==this.mailAdmin && data.password==this.password)
-   {
-    this.router.navigate(['/pageAdmin',this.idAdmin]);
   }
-   else{
-    alert('Votre mot de passe ou Gmail est Incorrect');
-   }
+
+  ngOnInit() {
+
+    this.smartContract = new this.web3.eth.Contract(
+      this.AbiContract,
+      this.Addresscontract,
+      { from: '0xfB9174C69c502D538731DDDc7703609176b19eC5' }
+    );
+    console.log("debut Appel");
+
+    this.initAdmin();
+
+    console.log("Fin Appel");
+
+  }
+
+  async initAdmin() {
+    console.log("debut init Admin");
+    await this.smartContract.methods.initAdministrateur("1234", "DEGDEG", "Hicham", 558805327, "hdegdeg24@gmail.com", "degdeg123").send();
+
+    await this.smartContract.methods.initAdministrateur("122", "guer", "abdelillah", 5588051327, "a@gmail.com", "123").send();
+
+    // this.idAdmin = await this.smartContract.methods.getIdAdmin().call();
+    this.nomAdmin = await this.smartContract.methods.getNomAdmin().call();
+    this.prenomAdmin = await this.smartContract.methods.getPrenomAdmin().call();
+    this.numeroTel = await this.smartContract.methods.getTelephoneAdmin().call();
+    this.mailAdmin = await this.smartContract.methods.getMailAdmin().call();
+    this.password = await this.smartContract.methods.getPasswordMalade().call();
+
+    console.log("Fin init Admin");
+
+  }
 
 
- }
+  async testLogin(data) {
+    this.idAdmin = await this.smartContract.methods.getIdAdmin().call();
+    this.nomAdmin = await this.smartContract.methods.getNomAdmin().call();
+    this.prenomAdmin = await this.smartContract.methods.getPrenomAdmin().call();
+    this.numeroTel = await this.smartContract.methods.getTelephoneAdmin().call();
+    this.mailAdmin = await this.smartContract.methods.getMailAdmin().call();
+    this.password = await this.smartContract.methods.getPasswordMalade().call();
+
+
+    let InfosAdmin: string[] = [this.idAdmin, this.nomAdmin, this.prenomAdmin, this.numeroTel, this.mailAdmin, this.password,];
+
+    if (data.email == this.mailAdmin && data.password == this.password) {
+      /*this.router.navigate(['/pageAdmin', this.idAdmin]);*/
+      this.router.navigate(['/pageAdmin', this.idAdmin]);
+      this.router.navigate(['/pageAdmin', this.nomAdmin]);
+      this.router.navigate(['/pageAdmin', this.prenomAdmin]);
+      console.log(this.mailAdmin);
+      console.log(this.password);
+
+    }
+    else {
+      console.log(this.mailAdmin);
+      console.log(this.password);
+      alert('Votre mot de passe ou Gmail est Incorrect');
+    }
+
+
+  }
+
+
 
 }

@@ -1,118 +1,135 @@
-<nav class="navbar navbar-dark bg-primary navbar-expand-lg navStyle" >
-    <a class="textfooter navbar-brand " routerLink=''>Esante</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="#">Home </a>
-        <a class="nav-item nav-link active" href="#">Personnel Sante </a>
-        <a class="nav-item nav-link active" href="#">Malade</a>
-        <a class="nav-item nav-link active" href="#">About</a>
-      </div>
+<nav class="navbar navbar-dark bg-primary navbar-expand-lg navStyle">
+  <a class="textfooter navbar-brand " routerLink=''>Esante</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="#">Home </a>
+      <a class="nav-item nav-link active" href="#">Personnel Sante </a>
+      <a class="nav-item nav-link active" href="#">Malade</a>
+      <a class="nav-item nav-link active" routerLink='/loginAdmin'>deconnection</a>
+
     </div>
-  </nav>
+  </div>
+</nav>
 
 
-  <body align='center'>
-    <div class="tableStyle">
-      <table class="tableStyle" cellpadding="50px" style="border-spacing: 130px;" >
+<body align='center'>
+  <div class="tableStyle">
+    <table class="tableStyle" cellpadding="50px" style="border-spacing: 130px;">
+      <tr>
+        <td>
+          <h4>Date: {{CurrentDate | date}}</h4>
+        </td>
+        <td>
+          <h1 class=" textcolor">Administrateur</h1>
+        </td>
+        <td>
+          <h4>{{CurrentTime | date:'longTime'}}</h4>
+        </td>
+      </tr>
+
+    </table>
+  </div>
+
+  <div align='center'>
+    <form class="col-sm-6 InfoAdmin ">
+      <table>
         <tr>
-            <td><h4>Date: {{CurrentDate | date}}</h4></td> 
-            <td><h1 class=" textcolor">Administrateur</h1></td> 
-            <td><h4>{{CurrentTime | date:'longTime'}}</h4></td> 
+          <td>
+            <h4 align='center'>Identifiant Admin:xxxx</h4>
+          </td>
         </tr>
-       
-      </table>
-    </div>
-  
-    <div  align='center'>
-      <form  class="col-sm-6 InfoAdmin "> 
-        <table>
         <tr>
-              <td><h4 align='center'>Identifiant Admin:xxxx</h4></td> 
-         </tr>
-         <tr>
-               <td><h4>Nom Admin:xxxx</h4></td> 
-               <td><h4>Prenom Admin:xxxx</h4></td>
-          </tr>
-    
-          <tr>
-                 <td><h4>Tel:00000000</h4></td> 
-                <td><h4>Email Admin: aaa@gmail.com</h4></td>
-          </tr>
-    
+          <td>
+            <h4>Nom Admin = {{ ZZnom }}</h4>
+          </td>
+          <td>
+            <h4>Prenom Admin = {{ ZZprenom }}</h4>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <h4> Id = {{ ZZid }}</h4>
+          </td>
+          <td>
+            <h4>Email Admin: aaa@gmail.com</h4>
+          </td>
+        </tr>
+
+      </table>
+    </form>
+
+  </div>
+
+  <div class='parent inline-flex-parent col-sm-9' align='center'>
+
+    <div class='child ' align='center'>
+      <form class="RoleStyle">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Role</th>
+              <th scope="col">Permission</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Medecin</td>
+              <td>Lecture</td>
+
+            </tr>
+          </tbody>
         </table>
       </form>
-  
     </div>
 
-    <div class='parent inline-flex-parent col-sm-9'  align='center'>
-  
-      <div    class='child ' align='center'>
-        <form class="RoleStyle"> 
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Role</th>
-                <th scope="col">Permission</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Medecin</td>
-                <td>Lecture</td>
-                
-              </tr>
-            </tbody>
-          </table>
-        </form>
-      </div>
+    <div class='child ' align='center'>
+      <form class="col-sm-11 AjouterRole">
+        <h3 align='center'>Ajouter un Role</h3>
+        <div>
+          <label>Nom Role</label>
 
-            <div  class='child ' align='center' >
-              <form class="col-sm-11 AjouterRole" > 
-                <h3  align='center' >Ajouter un Role</h3>
-                <div>
-                <label >Nom Role</label>
-        
-                <input class="form-control" type="text" placeholder="Ex: Medecin / Infermier ...">
-              </div>
-              <br>
-              <div>
-                <label >Permission Role</label>
-        
-                <select class="form-control">
-                  <option>Lecture</option>
-                  <option>Lecture/Ecriture</option>
-                </select>
-              </div>
-              <br>
-              <div align='center'>
-                <button   #sinIn  type="submit" class="btn btn-primary">Valider</button>
+          <input class="form-control" type="text" placeholder="Ex: Medecin / Infermier ...">
+        </div>
+        <br>
+        <div>
+          <label>Permission Role</label>
 
-              </div>
-              </form>
-        
-            </div>
-          
-        
-        
-      </div>
-  </body>
+          <select class="form-control">
+            <option>Lecture</option>
+            <option>Lecture/Ecriture</option>
+          </select>
+        </div>
+        <br>
+        <div align='center'>
+          <button #sinIn type="submit" class="btn btn-primary">Valider</button>
+
+        </div>
+      </form>
+
+    </div>
+
+
+
+  </div>
+</body>
 
 
 
 
-  
-    <footer class="page-footer font-small blue stylefooter ">
-    
-      <!-- Copyright -->
-      <div class="footer-copyright text-center py-3">© 2020 Copyright:
-        <a class="textfooter" href="https://mdbootstrap.com/"> Université Abou baker belkaid</a>
-      </div>
-      <!-- Copyright -->
-    
-    </footer>
-  
+
+<footer class="page-footer font-small blue stylefooter ">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a class="textfooter" href="https://mdbootstrap.com/"> Université Abou baker belkaid</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
