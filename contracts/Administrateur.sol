@@ -2,7 +2,6 @@
 
 pragma solidity >=0.4.21 <0.7.0;
 pragma experimental ABIEncoderV2;
-import './PersonnelSante.sol';
 
 
 contract Administrateur {
@@ -23,7 +22,6 @@ contract Administrateur {
 
     string[] public listRole;
 
-    PersonnelSante Employe;
 
     function initAdministrateur(
         string memory _idAdmin,
@@ -42,7 +40,6 @@ contract Administrateur {
     }
 
     function addRole(string memory nv_role, string memory _permission) public {
-        // uint256  newRole = listRole.length + 1;
 
         Role[nv_role].typeRole = nv_role;
         Role[nv_role].permission = _permission;
@@ -64,13 +61,30 @@ contract Administrateur {
     function getAllRole() public view returns (string[] memory) {
             return listRole;
     }
-
      function changePassword(string memory newpassword) public    {
         //récupéré les nom de roles contenu dans le tableau listRole
         password = newpassword;
     }
 
+    function changeNom(string memory newNom) public    {
+        //récupéré les nom de roles contenu dans le tableau listRole
+        nomAdmin = newNom;
+    }
 
+    function changePrenom(string memory newPrenom) public    {
+        //récupéré les nom de roles contenu dans le tableau listRole
+        prenomAdmin = newPrenom;
+    }
+
+    function changeEmail(string memory newEmail) public    {
+        //récupéré les nom de roles contenu dans le tableau listRole
+        mailAdmin = newEmail;
+    }
+
+    function changeTel(uint256 newTel) public    {
+        //récupéré les nom de roles contenu dans le tableau listRole
+        numeroTel = newTel;
+    }
     function getIdAdmin( ) public view returns (string memory)
     {
         return idAdmin;

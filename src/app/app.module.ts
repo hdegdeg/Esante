@@ -21,6 +21,8 @@ import { MaladesComponent } from './malades/malades.component';
 import { LoginComponent } from './administrateur/login/login.component';
 import { MedecinlogComponent } from './medecins/medecinlog/medecinlog.component';
 import { MaladelogComponent } from './malades/maladelog/maladelog.component';
+import { AjouterMaladeComponent } from './administrateur/ajouter-malade/ajouter-malade.component';
+import { AjouterPersonnelComponent } from './administrateur/ajouter-personnel/ajouter-personnel.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { MaladelogComponent } from './malades/maladelog/maladelog.component';
     LoginComponent,
     MedecinlogComponent,
     MaladelogComponent,
+    AjouterMaladeComponent,
+    AjouterPersonnelComponent,
 
  
     

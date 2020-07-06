@@ -3,8 +3,7 @@ const Web3 = require('web3');
 
 import {Web3Service} from './web3.service';
 
-import metacoin_artifacts from '../../../build/contracts/MetaCoin.json';
-
+import Administrateur_artifacts from '../../../build/contracts/Administrateur.json';
 declare let window: any;
 
 describe('Web3Service', () => {
@@ -22,19 +21,19 @@ describe('Web3Service', () => {
     window.ethereum = undefined;
     service.bootstrapWeb3();
 
-    return service.artifactsToContract(metacoin_artifacts).then((abstraction) => {
+    return service.artifactsToContract(Administrateur_artifacts).then((abstraction) => {
       expect(abstraction.currentProvider.host).toBe('http://localhost:8545');
     });
   }));
 
   it('should inject a the window web3 on a contract', inject([Web3Service], (service: Web3Service) => {
-    window.ethereum = new Web3.providers.HttpProvider('http://localhost:1337');
+    window.ethereum = new Web3.providers.HttpProvider('http://localhost:8545');
     window.ethereum.enable = async () => true;
 
     service.bootstrapWeb3();
 
-    return service.artifactsToContract(metacoin_artifacts).then((abstraction) => {
-      expect(abstraction.currentProvider.host).toBe('http://localhost:1337');
+    return service.artifactsToContract(Administrateur_artifacts).then((abstraction) => {
+      expect(abstraction.currentProvider.host).toBe('http://localhost:8545');
     });
   }));
 });

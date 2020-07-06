@@ -1,15 +1,13 @@
 <nav class="navbar navbar-dark bg-primary navbar-expand-lg navStyle">
-    <a class="textfooter navbar-brand " routerLink=''>Esante</a>
+    <a class="textnav navbar-brand " >Esante</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="#">Home </a>
-            <a class="nav-item nav-link active" href="#">Personnel Sante </a>
-            <a class="nav-item nav-link active" href="#">Malade</a>
-            <a class="nav-item nav-link active" routerLink='/loginAdmin'>deconnection</a>
+            <a class="nav-item nav-link active" routerLink=''>Home </a>
+            <a class="nav-item nav-link active" routerLink='/loginMalade'>deconnection</a>
 
         </div>
     </div>
@@ -23,7 +21,7 @@
                     <h4>Date: {{CurrentDate | date}}</h4>
                 </td>
                 <td>
-                    <h1 class=" textcolor">Administrateur</h1>
+                    <h1 class=" textcolor">Malade</h1>
                 </td>
                 <td>
                     <h4>{{CurrentTime | date:'longTime'}}</h4>
@@ -34,7 +32,7 @@
     </div>
 
     <div align='center'>
-        <form class="col-sm-6 InfoAdmin ">
+        <form class="col-sm-6 InfoMalade ">
             <table>
                 <tr>
                     <td>

@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   private smartContract: Web3.eth.Contract;
   private accounts: Web3.eth.Accounts[];
-  readonly Addresscontract = '0xd49F6F7ff572A869601E3bb38e4f42e9140d1a4a';
+  readonly Addresscontract = '0x544146C549bF89f516333a47a10CC0Dc43D8A52b';
 
 
   readonly AbiContract = [
@@ -162,6 +162,66 @@ export class LoginComponent implements OnInit {
       "type": "function"
     },
     {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "newNom",
+          "type": "string"
+        }
+      ],
+      "name": "changeNom",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "newPrenom",
+          "type": "string"
+        }
+      ],
+      "name": "changePrenom",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "newEmail",
+          "type": "string"
+        }
+      ],
+      "name": "changeEmail",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "newTel",
+          "type": "uint256"
+        }
+      ],
+      "name": "changeTel",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
       "constant": true,
       "inputs": [],
       "name": "getIdAdmin",
@@ -263,13 +323,15 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
+
     this.smartContract = new this.web3.eth.Contract(
       this.AbiContract,
-      this.Addresscontract,
-      { from: '0xfB9174C69c502D538731DDDc7703609176b19eC5' }
+      '0x544146C549bF89f516333a47a10CC0Dc43D8A52b',
+      { from:'0xb2e61Ed6a3f1ef5Bf19fBa5947551d3d3aA6a05C'}
     );
     console.log("debut Appel");
-
+   // console.log(this.accounts[0]);
+    
     this.initAdmin();
 
     console.log("Fin Appel");
@@ -277,12 +339,18 @@ export class LoginComponent implements OnInit {
   }
 
   async initAdmin() {
-    console.log("debut init Admin");
+
+    console.log("hello");
+    console.log("debut init Admin"); 
+    this.mailAdmin = await this.smartContract.methods.getMailAdmin().call();
+
+    console.log(this.mailAdmin);
+
+    if(this.mailAdmin ==null || this.mailAdmin=="")
+    {
     await this.smartContract.methods.initAdministrateur("1234", "DEGDEG", "Hicham", 558805327, "hdegdeg24@gmail.com", "degdeg123").send();
+    }
 
-    await this.smartContract.methods.initAdministrateur("122", "guer", "abdelillah", 5588051327, "a@gmail.com", "123").send();
-
-    // this.idAdmin = await this.smartContract.methods.getIdAdmin().call();
     this.nomAdmin = await this.smartContract.methods.getNomAdmin().call();
     this.prenomAdmin = await this.smartContract.methods.getPrenomAdmin().call();
     this.numeroTel = await this.smartContract.methods.getTelephoneAdmin().call();
@@ -303,13 +371,12 @@ export class LoginComponent implements OnInit {
     this.password = await this.smartContract.methods.getPasswordMalade().call();
 
 
-    let InfosAdmin: string[] = [this.idAdmin, this.nomAdmin, this.prenomAdmin, this.numeroTel, this.mailAdmin, this.password,];
+   // let InfosAdmin: string[] = [this.idAdmin, this.nomAdmin, this.prenomAdmin, this.numeroTel, this.mailAdmin, this.password,];
 
     if (data.email == this.mailAdmin && data.password == this.password) {
       /*this.router.navigate(['/pageAdmin', this.idAdmin]);*/
-      this.router.navigate(['/pageAdmin', this.idAdmin]);
-      this.router.navigate(['/pageAdmin', this.nomAdmin]);
-      this.router.navigate(['/pageAdmin', this.prenomAdmin]);
+      this.router.navigate(['/pageAdmin', this.idAdmin,this.nomAdmin,this.prenomAdmin]);
+ 
       console.log(this.mailAdmin);
       console.log(this.password);
 

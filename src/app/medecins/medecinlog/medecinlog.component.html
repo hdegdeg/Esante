@@ -1,14 +1,14 @@
 <body align='center'>
   <br><br><br><br>
   
-  
+
   <div  align='center' border-color='RED' border='bold'>
     <p>--ce ci pour faire test-- ecrire le mot true dans le champ email</p>
 
-<form  class="col-sm-4 Mystyle"  #loginForm="ngForm"  (ngSubmit)="test(loginForm.value)"> 
+<form  class="col-sm-4 Mystyle"  #loginForm="ngForm"  (ngSubmit)="testLogin(loginForm.value)"> 
     <div class="form-group">
-      <label >Email address</label>
-      <input required #email="ngModel" type="email" name="email" class="form-control stt" id="exampleDropdownFormEmail2" placeholder="email@example.com" ngModel>
+      <label >Numéro Emploi</label>
+      <input required  type="text" name="numEmploi" class="form-control stt" id="exampleDropdownFormEmail2" placeholder="243215875" ngModel>
 
     </div>
 
