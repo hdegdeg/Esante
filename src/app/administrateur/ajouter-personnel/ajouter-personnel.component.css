@@ -40,13 +40,17 @@ input.ng-valid{
         
     border: 1px solid black;
     border-radius: 4px;
-    width: max-content;
-    height: 700px;
+    width: 800px;
+    height: 880px;
        
 }
 
 
+.widthListe{
+    width: 800px;
+    height: 880px;
 
+}
 .AjouterFonctionnaire{
     border: 1px solid black;
     border-radius: 4px;

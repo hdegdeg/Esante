@@ -34,6 +34,8 @@ contract Malade {
 
     uint256[] public listMalade;
     uint256 public nombreMalade;
+    string public currentEmail;
+
 
 
     function setNewMalade(
@@ -206,6 +208,15 @@ contract Malade {
         returns (string memory)
     {
         block_Malade storage tmp = Malade_Struct[_mailMalade];
+        return tmp.mailMalade;
+    }
+
+    function getMailById(uint256 idMalade)
+        public
+        view
+        returns (string memory)
+    {
+        liste_access_chaque_Malade storage tmp = Access[idMalade];
         return tmp.mailMalade;
     }
 

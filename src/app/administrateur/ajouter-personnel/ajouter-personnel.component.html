@@ -49,7 +49,7 @@
   
     <div class='parent inline-flex-parent col-sm-11'  align='center'>
   
-      <div    class='child ' align='center'>
+      <div    class='child widthListe' align='center'>
         <form class="ListFonctionnaire"> 
             <h3 style="color:  #009bff;">Liste Fonctionnaire</h3>
           <table class="table">
@@ -65,14 +65,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>DEGDEG</td>
-                <td>Hicham</td>
-                <td>Medecin</td>
-                <td>0558805327</td>
-                <td>hdegdeg24@gmail.com</td>
-                <td>Bordj Bou Arreridj</td>
+              <tr *ngFor="let item of listview">
+                <th scope="row">{{item.Id}}</th>
+                <td>{{item.Nom}}</td>
+                <td>{{item.Preom}}</td>
+                <td>{{item.Role}}</td>
+                <td>{{item.Tel}}</td>
+                <td>{{item.Email}}</td>
+                <td>{{item.address}}</td>
                 
               </tr>
             </tbody>
@@ -88,29 +88,29 @@
                 <div>
                   <label >Numéro Emploi</label>
         
-                <input class="form-control" name="idF"type="text" placeholder="Ex: 2432475699" ngModel>
+                <input required class="form-control" name="idF"type="text" placeholder="Ex: 2432475699" ngModel>
   
 
                 </div>
                 <div>
                 <label >Nom Fonctionnaire</label>
         
-                <input class="form-control" name="nomF"type="text" placeholder="Ex: Guermouche" ngModel>
+                <input required class="form-control" name="nomF"type="text" placeholder="Ex: Guermouche" ngModel>
   
                 <label >Prenom Fonctionnaire</label>
             
-                <input class="form-control" name="prenomF" type="text" placeholder="Ex: Abd el-illah " ngModel>
+                <input required class="form-control" name="prenomF" type="text" placeholder="Ex: Abd el-illah " ngModel>
                 </div>
                  <br>
   
                 <div>
                 <label >Address Fonctionnaire</label>
                 
-                <input class="form-control" name="addressF" type="text" placeholder="Ex:Alger / hydra cité 20 aout 1955" ngModel>
+                <input required class="form-control" name="addressF" type="text" placeholder="Ex:Alger / hydra cité 20 aout 1955" ngModel>
                
                 <label >Telephone Fonctionnaire</label>
                 
-                <input class="form-control" name="telF" type="tel" placeholder="Ex: 0558805327" ngModel>
+                <input required class="form-control" name="telF" type="tel" placeholder="Ex: 0558805327" ngModel>
               
               </div>
                 <br>
@@ -118,7 +118,7 @@
                 <div>
                 <label >Email Fonctionnaire</label>
                 
-                <input class="form-control" name="emailF" type="email" placeholder="Ex: abcd@gmail.com"  pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required ngModel>
+                <input required class="form-control" name="emailF" type="email" placeholder="Ex: abcd@gmail.com"  pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required ngModel>
                 </div>
                 <br>
   
@@ -126,19 +126,23 @@
                 <div>
                 <label >Mot de passe </label>
                     
-                <input class="form-control" name="passwordF" type="password" placeholder="Ex:******" ngModel>
+                <input required #password="ngModel"  class="form-control" name="passwordF" type="password" placeholder="Ex:******" ngModel>
                 </div>
                 <div>
                   <label >Confermation Mot de passe </label>
                       
-                  <input class="form-control" type="password" placeholder="Ex:******">
-                  </div>
+                  <input required #confermation="ngModel"  class="form-control" name="confermationF" type="password" placeholder="Ex:******" ngModel>
+                  
+                  <span style="color: green;" *ngIf="password.value == confermation.value && password.touched" #thenBlock>mot de passe compatible </span> 
+                  <span  class="textcolor" *ngIf="password.value != confermation.value && password.touched">mot de passe Incompatible </span> 
+
+                </div>
                   <br>
   
                 <div>
                   <label >Permission Role</label>
           
-                  <select name="roleF" class="form-control" ngModel>
+                  <select required name="roleF" class="form-control" ngModel>
                     <option>Medecin</option>
                     <option>Infermier</option>
                   </select>
@@ -147,11 +151,11 @@
                 <div>
                   <label >Address Compte</label>
                       
-                  <input class="form-control" name="compte" type="text" placeholder="Ex:0xb3fa8E43a498e4511d0FF9076ec8A69076b2fd27" ngModel>
+                  <input required class="form-control" name="compte" type="text" placeholder="Ex:0xb3fa8E43a498e4511d0FF9076ec8A69076b2fd27" ngModel>
                   </div>
                   <br>
               <div align='center'>
-                <button   #sinIn  type="submit" class="btn btn-primary">Valider</button>
+                <button     #sinIn type="submit" class="btn btn-primary">Valider</button>
   
               </div>
               </form>

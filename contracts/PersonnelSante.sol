@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: MIT
 
 pragma solidity >=0.4.21 <0.7.0;
+pragma experimental ABIEncoderV2;
 
 
 contract PersonnelSante {
@@ -19,14 +20,20 @@ contract PersonnelSante {
         address createurFonctionnaire;
     }
 
+    struct liste_Numero_Fonctionnaire{
 
+    uint256 NumeroFonctionnaire;
+    uint256 idFonctionnaire;
+
+    }
 
     mapping(uint256 => Fonctionnaire) Fonctionnaire_Struct;
+    mapping(uint256 => liste_Numero_Fonctionnaire) NumFonctionnaire;
 
     uint256[] public listPersonnel;
 
     uint256 public nombrePersonnels;
-
+    uint256 public  currentIdFonctionnaire;
 
     function setNewFonctionnaire(
         uint256  _idFonctionnaire,
@@ -39,6 +46,7 @@ contract PersonnelSante {
         uint256 _telephoneFonctionnaire,
         address _createurFonctionnaire
     ) public {
+        nombrePersonnels = listPersonnel.length + 1;
 
         Fonctionnaire_Struct[_idFonctionnaire].idFonctionnaire = _idFonctionnaire;
         Fonctionnaire_Struct[_idFonctionnaire].roleFonctionnaire = _roleFonctionnaire;
@@ -50,9 +58,13 @@ contract PersonnelSante {
         Fonctionnaire_Struct[_idFonctionnaire].passwordFonctionnaire = _passwordFonctionnaire;
         Fonctionnaire_Struct[_idFonctionnaire].createurFonctionnaire = _createurFonctionnaire;
 
-        nombrePersonnels = listPersonnel.length + 1;
+        NumFonctionnaire[nombrePersonnels].NumeroFonctionnaire = nombrePersonnels;
+        NumFonctionnaire[nombrePersonnels].idFonctionnaire = _idFonctionnaire;
+
+
         listPersonnel.push(_idFonctionnaire);
     }
+
 
 
     function getNombrePersonnels() public view returns (uint256 ) {
