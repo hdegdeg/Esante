@@ -140,12 +140,20 @@
                   <br>
   
                 <div>
-                  <label >Permission Role</label>
+                  <label >Role</label>
           
-                  <select required name="roleF" class="form-control" ngModel>
-                    <option>Medecin</option>
-                    <option>Infermier</option>
+                  <select   name="roleF" #role="ngModel" class="form-control" ngModel>
+                    <option *ngFor="let item of listviewRole">{{item.Type}} -->> {{item.Permission}}</option> 
+                   
                   </select>
+                </div>
+                <br>
+                <div>
+                  <span style="color: green;"  value="role.value"></span> 
+
+                  <label >Permission</label>
+                  <input  class="form-control"  value="role.value" ngModel>
+
                 </div>
                 <br>
                 <div>

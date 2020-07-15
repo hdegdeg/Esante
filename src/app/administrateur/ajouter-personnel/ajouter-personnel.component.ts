@@ -24,13 +24,17 @@ export class AjouterPersonnelComponent implements OnInit {
   public _createurFonctionnaire= "***";
 
   public listview: any = [];
+  public listviewRole: any = [];
 
   public listeid: any[] ;
+  public listeRole: any[] ;
   private listP: any[] ;
+
   private web3: Web3;
   public fields: Object = {id: "text", Nom :"text", Prenom:"text", Role:"text", Tel:"text", Email:"text", address: "text" };
 
   private smartContract: Web3.eth.Contract;
+  private ContractAdmin: Web3.eth.Contract;
   private accounts: Web3.eth.Accounts[];
 
  
@@ -41,16 +45,41 @@ export class AjouterPersonnelComponent implements OnInit {
 
 
     this.smartContract = this.connection.ConnectionPersonnel() ;
+    this.ContractAdmin = this.connection.ConnectionAdmin();
+
     console.log("debut Appel");
 
 
     console.log("Fin Appel");
 
     this.listePersonnels();
+    this.LoadListeRole();
+
     console.log("***** ");
 
   }
 
+  async LoadListeRole() {
+    console.log("11***");
+
+
+   
+    this.listeRole = await this.ContractAdmin.methods.getAllRole().call();
+    let nombreRole = this.listeRole.length;
+ 
+    for(var i=0; i<nombreRole; i++) {
+
+      let data={
+        "Id":i+1,
+        "Type" :  await  this.ContractAdmin.methods.getRoleType(this.listeRole[i]).call() ,
+        "Permission":  await this.ContractAdmin.methods.getRolePermission(this.listeRole[i]).call(),
+    
+      };
+  
+       this.listviewRole.push(data);
+  }
+
+}
 
   async addMalade(data)
   { 

@@ -47,15 +47,26 @@ contract Administrateur {
         listRole.push(nv_role);
     }
 
-    function getRoleByName(string memory _typerole)
+    function getRolePermission(string memory _typerole)
         public
         view
-        returns (string memory, string memory)
+        returns (string memory)
     {
         //cree une celle (struct) pour contenir le role stoqué dans la blockchain
         role_Struct storage tmp = Role[_typerole];
 
-        return (tmp.typeRole, tmp.permission);
+        return tmp.permission;
+    }
+
+    function getRoleType(string memory _typerole)
+        public
+        view
+        returns (string memory)
+    {
+        //cree une celle (struct) pour contenir le role stoqué dans la blockchain
+        role_Struct storage tmp = Role[_typerole];
+
+        return tmp.typeRole;
     }
 
     function getAllRole() public view returns (string[] memory) {

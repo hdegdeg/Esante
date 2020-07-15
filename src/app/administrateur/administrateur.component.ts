@@ -17,14 +17,16 @@ export class AdministrateurComponent implements OnInit {
   public prenomAdmin = "***";
   public numeroTel;
   public mailAdmin = "***";
+
+  public listeRole: any[] ;
+  public listview: any = [];
+
   CurrentDate: string = new Date().toDateString();
   CurrentTime = new Date();
   private web3: Web3;
 
   private ContractAdmin: Web3.eth.Contract;
- /* private accounts: Web3.eth.Accounts[];
-  readonly AddresscontractAdmin = '0xd49F6F7ff572A869601E3bb38e4f42e9140d1a4a';
-*/
+ 
 
 
   public ZZid;
@@ -44,20 +46,39 @@ export class AdministrateurComponent implements OnInit {
     let prenom = parseInt(this.router.snapshot.paramMap.get('prenom'));
     this.ZZprenom = prenom;
 
-    this.ContractAdmin = this.connection.ConnectionAdmin;
-    this.initAdmin();
-  }
-  async initAdmin() {
-    //await this.ContractAdmin.methods.initAdministrateur("1234", "DEGDEG", "Hicham", 558805327, "hdegdeg24@gmail.com", "degdeg123").send();
+    this.ContractAdmin = this.connection.ConnectionAdmin();
 
-    //await this.ContractAdmin.methods.initAdministrateur("122", "guer", "abdelillah", 5588051327, "a@gmail.com", "123").send();
-
-
+    this.LoadListeRole();
   }
 
 
-  testLogin(data) {
 
+  async LoadListeRole() {
+    console.log("11***");
+
+
+   
+    this.listeRole = await this.ContractAdmin.methods.getAllRole().call();
+    let nombreRole = this.listeRole.length;
+ 
+    for(var i=0; i<nombreRole; i++) {
+
+      let data={
+        "Id":i+1,
+        "Type" :  await  this.ContractAdmin.methods.getRoleType(this.listeRole[i]).call() ,
+        "Permission":  await this.ContractAdmin.methods.getRolePermission(this.listeRole[i]).call(),
+    
+      };
+  
+       this.listview.push(data);
+  }
+
+}
+  async addRole(data) {
+
+    await this.ContractAdmin.methods.addRole(data.typeRole,data.permissionRole).send();
+    this.LoadListeRole() ;
+   
   }
 
 }

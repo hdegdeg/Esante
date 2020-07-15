@@ -72,17 +72,17 @@
       <form class="RoleStyle">
         <table class="table">
           <thead>
-            <tr>
+            <tr >
               <th scope="col">#</th>
               <th scope="col">Role</th>
               <th scope="col">Permission</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Medecin</td>
-              <td>Lecture</td>
+            <tr *ngFor="let item of listview">
+              <th scope="row">{{item.Id}}</th>
+              <td>{{item.Type}}</td>
+              <td>{{item.Permission}}</td>
 
             </tr>
           </tbody>
@@ -91,18 +91,18 @@
     </div>
 
     <div class='child ' align='center'>
-      <form class="col-sm-11 AjouterRole">
+      <form class="col-sm-11 AjouterRole"  #RoleForm="ngForm" (ngSubmit)="addRole(RoleForm.value)">
         <h3 align='center'>Ajouter un Role</h3>
         <div>
           <label>Nom Role</label>
 
-          <input class="form-control" type="text" placeholder="Ex: Medecin / Infermier ...">
+          <input class="form-control" type="text" name="typeRole" placeholder="Ex: Medecin / Infermier ..." ngModel>
         </div>
         <br>
         <div>
           <label>Permission Role</label>
 
-          <select class="form-control">
+          <select class="form-control" name="permissionRole" ngModel>
             <option>Lecture</option>
             <option>Lecture/Ecriture</option>
           </select>

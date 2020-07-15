@@ -106,13 +106,29 @@ export class ConnectionService {
           "type": "string"
         }
       ],
-      "name": "getRoleByName",
+      "name": "getRolePermission",
       "outputs": [
         {
           "internalType": "string",
           "name": "",
           "type": "string"
-        },
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_typerole",
+          "type": "string"
+        }
+      ],
+      "name": "getRoleType",
+      "outputs": [
         {
           "internalType": "string",
           "name": "",
@@ -792,7 +808,7 @@ export class ConnectionService {
       "type": "function"
     }
   ] ;
-  readonly AbiMalade = [
+  readonly AbiMalade =  [
     {
       "constant": true,
       "inputs": [],
