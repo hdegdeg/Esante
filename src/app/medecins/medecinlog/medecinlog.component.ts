@@ -21,12 +21,15 @@ export class MedecinlogComponent implements OnInit {
   public _mailFonctionnaire = "***";
   public _passwordFonctionnaire= "***";
   public _createurFonctionnaire= "***";
-  private listid: any[] ;
 
+  public _Permission= "***";
+
+  private listid: any[] ;
   private web3: Web3;
 
 
   private smartContract: Web3.eth.Contract;
+  private smartContractAdmin: Web3.eth.Contract;
   private accounts: Web3.eth.Accounts[];
   readonly Addresscontract = '0xb5ef83b727c924f0cF0B84083Ec6578565EA2868';
 
@@ -37,25 +40,20 @@ export class MedecinlogComponent implements OnInit {
   ngOnInit() {
 
     this.smartContract = this.connection.ConnectionPersonnel();
-  
-    console.log("debut Appel");
-    
 
-    console.log("Fin Appel");
+    this.smartContractAdmin = this.connection.ConnectionAdmin();
+
 
   }
 
 
 
   async testLogin(data) {
-    console.log("11");
+
     this.listid =await this.smartContract.methods.getAllid().call();
-    
-    console.log("22");
 
     this.listid.forEach(function (val) {
-      console.log("id");
-      console.log(val);
+
     });
   
     var a =this.listid.indexOf(data.numEmploi);
@@ -65,7 +63,6 @@ export class MedecinlogComponent implements OnInit {
       console.log(data.numEmploi);
     }
 
-    console.log("33");
 
     this._nomFonctionnaire = await this.smartContract.methods.getNomFonctionnaire(data.numEmploi).call();
     this._prenomFonctionnaire = await this.smartContract.methods.getPrenomFonctionnaire(data.numEmploi).call();   
@@ -76,16 +73,20 @@ export class MedecinlogComponent implements OnInit {
     this._mailFonctionnaire = await this.smartContract.methods.getMailFonctionnaire(data.numEmploi).call();
     this._passwordFonctionnaire = await this.smartContract.methods.getPasswordFonctionnaire(data.numEmploi).call();
 
+    this._Permission = await this.smartContractAdmin.methods.getRolePermission(this._roleFonctionnaire).call();
 
     //let InfosAdmin: string[] = [this.idAdmin, this.nomAdmin, this.prenomAdmin, this.numeroTel, this.mailAdmin, this.password,];
 
-    if ((this.listid.indexOf(data.numEmploi) !== -1) && data.password == this._passwordFonctionnaire) {
-      this.router.navigate(['/pageMalade']);
- 
+    if ((this.listid.indexOf(data.numEmploi) !== -1) && data.password == this._passwordFonctionnaire && this._Permission =="Lecture") {
 
+      this.router.navigate(['/pageMedecinLecture']);
+ 
+      
     }
-    else {
-      console.log(this._passwordFonctionnaire);
+    else if ((this.listid.indexOf(data.numEmploi) !== -1) && data.password == this._passwordFonctionnaire && this._Permission =="Lecture/Ecriture") {
+      this.router.navigate(['/pageMedecinEcriture']);
+     
+    }else{
       alert('Votre mot de passe ou Gmail est Incorrect');
     }
 
